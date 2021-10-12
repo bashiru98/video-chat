@@ -76,6 +76,7 @@ app.get("/api/secure-token-xml/room-exists", (req, res) => {
         });
       });
   });
+  console.log("just a test")
   
 app.listen(process.env.PORT || 2000, () => {
     console.log("server running on port 2000")

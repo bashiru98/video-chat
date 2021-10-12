@@ -3,19 +3,27 @@ const path =require("path")
 const twilio =require( "twilio")
 const cors =require( "cors")
 require('dotenv').config('dotenv')
-const twilioAccountSid = process.env.twilioAccountSid
-const twilioAuthToken = process.env.twilioAuthToken
-const twilioApiKey = process.env.twilioApiKey
-const twilioApiSecret = process.env.twilioApiSecret
+const twilioAccountSid = "AC4cd9de99f60d73bab8491a22bbab53e7"
+const twilioAuthToken = "123c0e4f5c6a7d94d0b734607f8f2cbe"
+const twilioApiKey = "SKe185989747f0193d1880876cf1de3ee0"
+const twilioApiSecret = "flEVMd6y4G7ISDfHLFvt2UKEYKN9tnnQ"
 
 const app = express()
 app.use(cors())
 app.use(express.static(path.join(__dirname,"build")));
 
 app.use(express.json())
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname,"build","index.html"))
-})
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  // app.use(express.static("build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname,"build", "index.html"));
+  });
+}
+// app.get("/", (req, res) => {
+//     res.sendFile(path.join(__dirname,"build","index.html"))
+// })
 app.get("/api/secure-token-xml",(req, res) => {
 try {
     const AccessToken =  require("twilio").jwt.AccessToken
@@ -76,7 +84,7 @@ app.get("/api/secure-token-xml/room-exists", (req, res) => {
         });
       });
   });
-  console.log("just a test")
+  
   
 app.listen(process.env.PORT || 2000, () => {
     console.log("server running on port 2000")

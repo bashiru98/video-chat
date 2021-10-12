@@ -3,10 +3,10 @@ const path =require("path")
 const twilio =require( "twilio")
 const cors =require( "cors")
 require('dotenv').config('dotenv')
-const twilioAccountSid = "AC4cd9de99f60d73bab8491a22bbab53e7"
-const twilioAuthToken = "123c0e4f5c6a7d94d0b734607f8f2cbe"
-const twilioApiKey = "SKe185989747f0193d1880876cf1de3ee0"
-const twilioApiSecret = "flEVMd6y4G7ISDfHLFvt2UKEYKN9tnnQ"
+const twilioAccountSid = process.env.twilioAccountSid
+const twilioAuthToken = process.env.twilioAuthToken
+const twilioApiKey = process.env.twilioApiKey
+const twilioApiSecret = process.env.twilioApiSecret
 
 const app = express()
 app.use(cors())

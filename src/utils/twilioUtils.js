@@ -30,7 +30,7 @@ export const getTokenFromTwilio = async (setAccessToken, identity) => {
   const randomId = uuidv4();
 
   const response = await axios.get(
-    `http://localhost:2000/api/secure-token-xml?identity=${randomId}${identity}`
+    `https://server-video-chat123.herokuapp.com/api/secure-token-xml?identity=${randomId}${identity}`
   );
 
   const data = response.data;
@@ -85,7 +85,7 @@ export const connectToRoom = async (
 
 export const checkIfRoomExists = async (roomId) => {
   const response = await axios.get(
-    `http://localhost:2000/api/secure-token-xml/room-exists?roomId=${roomId}`
+    `https://server-video-chat123.herokuapp.com/api/secure-token-xml/room-exists?roomId=${roomId}`
   );
 
   return response.data.roomExists;
